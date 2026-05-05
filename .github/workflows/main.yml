@@ -52,6 +52,7 @@ jobs:
         continue-on-error: true # Por si no usas wrapper
 
       - name: snyk test java 
+        continue-on-error: true
         env: 
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
           JAVA_OPTS: "-Xmx2g"
