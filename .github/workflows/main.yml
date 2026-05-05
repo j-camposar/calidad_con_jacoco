@@ -40,12 +40,10 @@ jobs:
       - name: install snyk
         run: npm install -g snyk
 
-      - name: autenticacion 
-        env: 
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        run: snyk auth $SNYK_TOKEN
 
       - name: snyk test java 
+        env: 
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         run: snyk test --severity-threshold=high
 
       - name : generate snyk JSON Report 
