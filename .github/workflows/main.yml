@@ -47,9 +47,15 @@ jobs:
       - name: Install Snyk CLI
         run: npm install -g snyk
 
+      - name: Make Maven Wrapper executable
+        run: chmod +x mvnw
+        continue-on-error: true # Por si no usas wrapper
+
       - name: snyk test java 
         env: 
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+          JAVA_OPTS: "-Xmx2g"
+          MAVEN_OPTS: "-Xmx2g"
         run: snyk test --severity-threshold=high
 
       - name : generate snyk JSON Report 
